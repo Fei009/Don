@@ -1,0 +1,69 @@
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua'))()
+local Window = Library.CreateLib("DON X LUCKYBLOCK", "DarkTheme")
+local Tab = Window:NewTab("MAIN")
+local Section = Tab:NewSection("LUCKYBLOCK")
+
+
+Section:NewButton("Luckyblock", "  ", function()
+    for i=1, 10 do
+     game.ReplicatedStorage.SpawnLuckyBlock:FireServer() 
+    end
+end)
+
+Section:NewButton("Superblock", "  ", function()
+    for i=1, 10 do
+    game.ReplicatedStorage.SpawnSuperBlock:FireServer()
+    end
+end)
+
+Section:NewButton("Diamondblock", "  ", function()
+    for i=1, 10 do
+    game.ReplicatedStorage.SpawnDiamondBlock:FireServer()
+    end
+end)
+
+Section:NewButton("RainbowBlock", "  ", function()
+    for i=1, 10 do
+    game.ReplicatedStorage.SpawnRainbowBlock:FireServer()
+    end
+end)
+
+Section:NewButton("GalaxyBlock", "  ", function()
+    for i=1, 10 do
+    game.ReplicatedStorage.SpawnGalaxyBlock:FireServer()
+    end
+end)
+
+-------------------------
+
+local Tab = Window:NewTab("TELEPORT")
+local Section = Tab:NewSection("TELEPORT PLAYER")
+players = {}
+
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+   table.insert(players,v.Name)
+end
+
+
+---------------------- Drop Down
+
+Section:NewDropdown("Select Player", "", players , function(AllPlayers)
+    Select = AllPlayers
+end)
+
+---------------------- Buttons
+
+Section:NewButton("Teleport", " ", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Select].Character.HumanoidRootPart.CFrame 
+end)
+
+---------------------- Refresh
+
+Section:NewButton("Refresh", " ", function()
+for i,v in pairs(game:GetService("Players"):GetChildren()) do
+   table.insert(players,v.Name)
+    table.clear(players)
+end 
+end) 
+
+-------------------------
